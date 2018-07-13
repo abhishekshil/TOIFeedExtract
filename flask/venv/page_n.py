@@ -7,30 +7,41 @@ import array
 url_list =db_conn.final_link
 url_name=db_conn.links_list
 documents = []
-title_list = []
-description_list = []
-links = []
-pub_dates = []
+#title_list = []
+#description_list = []
+#links = []
+#pub_dates = []
 def content(documents):
-    title_list.clear()
-    links.clear()
-    description_list.clear()
-    pub_dates.clear()
+    #title_list.clear()
+    #links.clear()
+    #description_list.clear()
+    #pub_dates.clear()
     for xml_doc in documents:
            articles = xml_doc.xpath ("//item")
            #articles = xml_doc.find_all ('item')
            for article in articles:
-               title_list.append (article[0].text)
-               description_list.append (article[1].text)
-               links.append (article[2].text)
-               pub_dates.append (article[4].text)
-              # print( np.array([title_list,description_list,links,pub_dates]))
-    news_data = pd.DataFrame (title_list, columns=["title"])
-    news_data["description"] = description_list
-    news_data["links"] = links
-    news_data["publishing Dates"]=pub_dates
-    print((news_data))
-    news_data
+               title_list=article.xpath("//title/text()")
+               description_list= article.xpath("//description/text()")
+               links=article.xpath("//link/text()")
+               pub_dates=article.xpath("//pubDate/text()")
+
+    output=[]
+    for info in zip(title_list,description_list,links,pub_dates):
+        resp={}
+        resp['Title']=info[0]
+        resp['Description'] = info[1]
+        resp['Link'] = info[2]
+        resp['Publishing Date'] = info[3]
+        output.append(resp)
+
+    print(output)
+
+        # print( np.array([title_list,description_list,links,pub_dates]))
+   #news_data["description"] = description_list
+    #news_data["links"] = links
+    #news_data["publishing Dates"]=pub_dates
+    #print((news_data))
+    #news_data
     #for disp in (title_list,description_list,links,pub_dates):
      #       print ((disp))
       #      disp.clear()

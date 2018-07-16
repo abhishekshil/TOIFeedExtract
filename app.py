@@ -1,4 +1,5 @@
-from flask import Flask, render_template, flash, redirect, url_for, request
+from flask import Flask, render_template, url_for, json,request
+import os
 #from flask_mysqldb import MySQL
 #from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 #from passlib.hash import sha256_crypt
@@ -32,6 +33,10 @@ def about():
 # Articles
 @app.route('/articles')
 def articles():
+    site_root=os.path.realpath(os.path.dirname(__file__))
+    json_url=os.path.join(site_root,'static',"temp.json")
+    data=json.load(json_url)
+    return render_template('articles.html',datas=data)
     # Create cursor
     #cur = mysql.connection.cursor()
 
@@ -41,7 +46,7 @@ def articles():
     #articles = cur.fetchall()
 
     #if result > 0:
-        return render_template('articles.html', articles=articles)
+        #return render_template('articles.html', articles=articles)
     #else:
         #msg = 'No Articles Found'
         #return render_template('articles.html', msg=msg)
@@ -50,17 +55,7 @@ def articles():
 
 
 #Single Article
-@app.route('/article/<string:id>/')
-def article(id):
-    # Create cursor
-    cur = mysql.connection.cursor()
 
-    # Get article
-    result = cur.execute("SELECT * FROM articles WHERE id = %s", [id])
-
-    article = cur.fetchone()
-
-    return render_template('article.html', article=article)
 
 
 

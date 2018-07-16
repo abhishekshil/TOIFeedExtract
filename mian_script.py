@@ -1,6 +1,9 @@
 import requests
 import lxml.etree
 import db_conn
+import re
+import fileinput
+import os
 import pandas as pd
 def run():
         documents = []
@@ -9,7 +12,11 @@ def run():
         url_list = db_conn.final_link
         categories = db_conn.links_list
         counter=0
+        with open ('temp1.json', 'w') as f:
+            f.seek (0)
+            f.write ('{"Response":[')
         for url in url_list:
+
             response = requests.get(url)
             xml_page = response.text
             parser = lxml.etree.XMLParser(recover=True, encoding='utf-8')
@@ -18,6 +25,14 @@ def run():
             counter=counter+1
             panda_n(documents,cat)
             documents.clear()
+        fn = "temp1.json"
+        text_to_search = [',,,,', ',,,', ',,']
+        text_to_replace = [',', ']}', ',']
+        for i in range (len (text_to_search)):
+            with fileinput.FileInput (fn, inplace=True, backup='.bak') as file:
+                for line in file:
+                    print (line.replace (text_to_search[i], text_to_replace[i]), end='')
+
 
 def panda_n(documents,cat):
         title_list = []
@@ -58,8 +73,10 @@ def panda_n(documents,cat):
         #news_data["category"] = categories
         news_data["links"]=guid_url_list
         news_data["Date Of Publishing"]=dop
-        with open ('temp.json', 'a') as f:
-            f.write (news_data.to_json (orient='records',lines=True))
+        with open ('temp1.json', 'a') as f:
+           f.write (news_data.to_json (orient='records')[1:-1].replace('}][{', '},{'))
+           f.write(',')
+
         #print(news_data)
         #print(news_data.to_json(orient='records',lines=True))
 

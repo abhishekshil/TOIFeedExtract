@@ -1,10 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <h1>Articles</h1>
-  <ul class="list-group">
-    {% for data in datas %}
-      <li class="list-group-item">{{data.title}}</a></li>
-    {% endfor %}
-  </ul>
+ {%if ctrsuccess %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    {%for ctrrow in ctrsuccess %}
+                    <tr>
+                        <td>{{ ctrrow['id'] }}</td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+        {%endif%}
 {% endblock %}

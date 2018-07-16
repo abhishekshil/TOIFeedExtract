@@ -34,9 +34,9 @@ def about():
 @app.route('/articles')
 def articles():
     site_root=os.path.realpath(os.path.dirname(__file__))
-    json_url=os.path.join(site_root,'static',"temp.json")
-    data=json.load(json_url)
-    return render_template('articles.html',datas=data)
+    json_url=os.path.join(site_root,"temp1.json")
+    data=json.loads(json_url)
+    return render_template('articles.html',ctrsuccess=data)
     # Create cursor
     #cur = mysql.connection.cursor()
 

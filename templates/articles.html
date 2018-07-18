@@ -1,17 +1,5 @@
 {% extends 'layout.html' %}
 
 {% block body %}
- {%if ctrsuccess %}
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <tbody>
-                    {%for ctrrow in ctrsuccess %}
-                    <tr>
-                        <td>{{ ctrrow['id'] }}</td>
-                    </tr>
-                    {%endfor%}
-                </tbody>
-            </table>
-        </div>
-        {%endif%}
+  {{ctrsuccess|safe}}
 {% endblock %}

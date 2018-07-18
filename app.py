@@ -4,7 +4,7 @@ import os
 #from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 #from passlib.hash import sha256_crypt
 from functools import wraps
-
+from json2html import *
 app = Flask(__name__)
 
 # Config MySQL
@@ -34,10 +34,16 @@ def about():
 @app.route('/articles')
 def articles():
     site_root=os.path.realpath(os.path.dirname(__file__))
-    json_url=os.path.join(site_root,"temp1.json")
-    data=json.loads(json_url)
-    return render_template('articles.html',ctrsuccess=data)
-    # Create cursor
+    json_url=os.path.join(site_root,"static","temp.json")
+    with open(json_url,'r') as fl:
+     data=json.load(fl)
+     passs=json2html.convert(json=data)
+    with open (os.path.join(site_root,"templates","tabarticles.html"),'w',encoding="utf-8") as fll:
+        fll.write(passs)
+
+    return render_template('tabarticles.html')
+
+# Create cursor
     #cur = mysql.connection.cursor()
 
     # Get articles

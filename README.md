@@ -1,7 +1,4 @@
-# FlaskApp
-
-Simple application with authentication and CRUD functionality using the Python Flask micro-framework
-
+SHOWS RSS EXTRACT OF TOI
 ## Installation
 
 To use this template, your computer needs:

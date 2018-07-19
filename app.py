@@ -33,15 +33,15 @@ def about():
 # Articles
 @app.route('/articles')
 def articles():
-    site_root=os.path.realpath(os.path.dirname(__file__))
-    json_url=os.path.join(site_root,"static","temp.json")
-    with open(json_url,'r') as fl:
-     data=json.load(fl)
-     passs=json2html.convert(json=data)
-    with open (os.path.join(site_root,"templates","tabarticles.html"),'w',encoding="utf-8") as fll:
-        fll.write(passs)
+    #site_root=os.path.realpath(os.path.dirname(__file__))
+    #json_url=os.path.join(site_root,"static","temp.json")
+    ##
+    # data=json.load(fl)
+     #passs=json2html.convert(json=data)
+    #with open (os.path.join(site_root,"templates","tabarticles.html"),'w',encoding="utf-8") as fll:
+     #   fll.write(passs)
 
-    return render_template('tabarticles.html')
+    return render_template('articles.html')
 
 # Create cursor
     #cur = mysql.connection.cursor()

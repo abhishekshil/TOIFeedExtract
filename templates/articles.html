@@ -1,5 +1,36 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  {{ctrsuccess|safe}}
+  <h2>The XMLHttpRequest Object</h2>
+
+<button id="btn" type="button" onclick="loadDoc()">Request data</button>
+
+<div id="news-info"></div>
+
+
+<script>
+var container =document.getElementById("news-info");
+
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "https://raw.githubusercontent.com/abhishekshil/RSSExtract/master/static/temp.json", true);
+  xhttp.onload= function() {
+     if (xhttp.status==200)
+      {var loadData = JSON.parse(xhttp.responseText);
+      renderHTML(loadData.Response)
+     }
+  };
+
+  xhttp.send();
+}
+function renderHTML(data){
+	var htmlString="";
+	for(i=0;i<data.length;i++)
+	{
+		htmlString+="<p>"+data[i].Categories+" :"+data[i].description+"</p>"
+	}
+	container.insertAdjacentHTML('beforeend',htmlString);
+}
+</script>
+
 {% endblock %}

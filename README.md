@@ -1,4 +1,4 @@
-SHOWS RSS EXTRACT OF TOI
+# RSS EXTRACT OF TOI 
 ## Installation
 
 To use this template, your computer needs:

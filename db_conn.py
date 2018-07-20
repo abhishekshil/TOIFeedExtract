@@ -1,12 +1,10 @@
-import pymysql
 from bs4 import BeautifulSoup
 import urllib.request as urllib
 import re
 
 final_link=[]
 links_list=[]
-conn=pymysql.connect(host="localhost",user="root",passwd="",db="link_table")
-mycursor=conn.cursor()
+
 url = "https://timesofindia.indiatimes.com/rss.cms"
 page = urllib.urlopen(url)
 soup=BeautifulSoup(page,'lxml')
@@ -22,12 +20,4 @@ for List in table:
            final_link.append(tr.get('href').replace("javascript:void(0)",""))
 
 
-#for link in table.findAll('a'):
-#    table_links=link.get('href').replace("javascript:void(0)","")
-#    print(table_links)
 
-    #mycursor.execute("INSERT INTO link(link) VALUES(%s)",(table_links))
-    #mycursor.execute("DELETE FROM link where link=10;")
-
-conn.commit()
-conn.close()

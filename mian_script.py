@@ -5,7 +5,6 @@ import re
 import fileinput
 import os
 import pandas as pd
-
 site_root = os.path.realpath (os.path.dirname (__file__))
 json_url = os.path.join (site_root, "static", "temp.json")
 def run():
@@ -65,14 +64,11 @@ def panda_n(documents,cat):
             cati.append(cat)
 
 
-
         news_data = pd.DataFrame (id, columns=["Article Id"])
         news_data["Categories"] = cat
         news_data["Title"]=title_list
 
         news_data["description"] = description_list
-        news_data["short_description"] = [item[item.find (" - ") + 1:item.find ("<")] for item in
-                                          news_data["description"]]
         #news_data["category"] = categories
         news_data["links"]=guid_url_list
         news_data["Date Of Publishing"]=dop

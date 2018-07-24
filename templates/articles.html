@@ -25,10 +25,12 @@ function loadDoc() {
 }
 function renderHTML(data){
 	var htmlString="";
+
 	for(i=0;i<data.length;i++)
-	{
-		htmlString+="<p>"+data[i].Categories+" :"+data[i].description+"</p>"
-	}
+	{if(data[i].Article_Id=='1')
+		htmlString+="<h1>"+data[i].Categories+"</h1>"
+   //else htmlString+="<div><h2>"+data[i].Title+"<h2>"+"<h4>"+"Description:"+data[i].Description+"<h4>"+"<h5>"+"DOP:"+data[i].Date_Of_Publishing+"<h5>"+"<h4>"+"Link:"+data[i].Links+"<h4><div>"	
+  }
 	container.insertAdjacentHTML('beforeend',htmlString);
 }
 </script>

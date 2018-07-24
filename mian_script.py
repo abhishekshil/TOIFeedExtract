@@ -64,14 +64,14 @@ def panda_n(documents,cat):
             cati.append(cat)
 
 
-        news_data = pd.DataFrame (id, columns=["Article Id"])
+        news_data = pd.DataFrame (id, columns=["Article_Id"])
         news_data["Categories"] = cat
         news_data["Title"]=title_list
 
-        news_data["description"] = description_list
+        news_data["Description"] = description_list
         #news_data["category"] = categories
-        news_data["links"]=guid_url_list
-        news_data["Date Of Publishing"]=dop
+        news_data["Links"]=guid_url_list
+        news_data["Date_Of_Publishing"]=dop
         with open (json_url, 'a') as f:
            f.write (news_data.to_json (orient='records')[1:-1].replace('}][{', '},{'))
            f.write(',')

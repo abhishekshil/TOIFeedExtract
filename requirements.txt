@@ -1,9 +1,8 @@
 #install python3.6 or above  and specify the path for pip3 command : pip3 install -r requirements.txt
 Request	
-Lxml.etree
+lxml==4.2.3
 Pandas
 Bs4
-Urllib.request
-re
+Urllib3
 Flask
  

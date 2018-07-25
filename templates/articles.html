@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <h2>The XMLHttpRequest Object</h2>
+  <h2 id=txt>The XMLHttpRequest Object</h2>
 
 <button id="btn" type="button" onclick="loadDoc()">Request data</button>
 
@@ -10,6 +10,8 @@
 
 <script>
 var container =document.getElementById("news-info");
+var button = document.getElementById("btn");
+var heading=document.getElementById("txt")
 
 function loadDoc() {
   var xhttp = new XMLHttpRequest();
@@ -17,6 +19,8 @@ function loadDoc() {
   xhttp.onload= function() {
      if (xhttp.status==200)
       {var loadData = JSON.parse(xhttp.responseText);
+     heading.parentNode.removeChild(heading);
+      button.parentNode.removeChild(button);
       renderHTML(loadData.Response)
      }
   };
@@ -28,8 +32,8 @@ function renderHTML(data){
 
 	for(i=0;i<data.length;i++)
 	{if(data[i].Article_Id=='1')
-		htmlString+="<h1>"+data[i].Categories+"</h1>"
-   //else htmlString+="<div><h2>"+data[i].Title+"<h2>"+"<h4>"+"Description:"+data[i].Description+"<h4>"+"<h5>"+"DOP:"+data[i].Date_Of_Publishing+"<h5>"+"<h4>"+"Link:"+data[i].Links+"<h4><div>"	
+		htmlString+="<br><br><h1 class='recenter'><b>"+data[i].Categories+"</b></h1><br></br>"
+   else htmlString+="<div class='recenter1'><h2><b>"+data[i].Title+"</b></h2>"+"<h4><b>Description:<b><h4><p><i>"+data[i].Description+"</i></p>"+"<h5>"+"DOP:"+data[i].Date_Of_Publishing+"</h5>"+"<a href='"+data[i].Links+"'>Visit Website</a></h4></div>"	
   }
 	container.insertAdjacentHTML('beforeend',htmlString);
 }

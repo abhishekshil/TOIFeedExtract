@@ -32,7 +32,7 @@ function renderHTML(data){
 
 	for(i=0;i<data.length;i++)
 	{if(data[i].Article_Id=='1')
-		htmlString+="<br><br><h1 class='recenter'><b>"+data[i].Categories+"</b></h1><br></br>"
+		htmlString+="<br><br><h1 class='recenter'><b><u>"+data[i].Categories+"</u></b></h1><br></br>"
    else htmlString+="<div class='recenter1'><h2><b>"+data[i].Title+"</b></h2>"+"<h4><b>Description:<b><h4><p><i>"+data[i].Description+"</i></p>"+"<h5>"+"DOP:"+data[i].Date_Of_Publishing+"</h5>"+"<a href='"+data[i].Links+"'>Visit Website</a></h4></div>"	
   }
 	container.insertAdjacentHTML('beforeend',htmlString);

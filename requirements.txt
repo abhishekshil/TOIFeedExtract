@@ -21,7 +21,7 @@ jedi==0.12.1
 Jinja2==2.10
 json2html==1.2.1
 linkGrabber==0.3.1
-lxml==4.2.3
+lxml==4.6.3
 MarkupSafe==1.0
 numpy==1.14.5
 pandas==0.23.3

@@ -23,7 +23,7 @@ json2html==1.2.1
 linkGrabber==0.3.1
 lxml==4.2.3
 MarkupSafe==1.0
-numpy==1.14.5
+numpy==1.22.0
 pandas==0.23.3
 parso==0.3.1
 pickleshare==0.7.4
